@@ -13,5 +13,5 @@ app.get('/', (req,res)=>{
 })
 
 app.listen(port, ()=>{
-    console.log(`Rokomari is Running on port ${port}`)
+    console.log(`Rokomari is Running on port ${port || 5000}`)
 })
