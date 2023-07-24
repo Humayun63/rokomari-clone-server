@@ -32,6 +32,14 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         // await client.connect();
 
+        //Collections
+        const hotDealsCollection = client.db('rokomari').collection('hotDeals')
+
+
+        app.get('/hot-deals', async(req,res)=>{
+            const result = await hotDealsCollection.find().toArray()
+            res.send(result)
+        })
 
 
 
