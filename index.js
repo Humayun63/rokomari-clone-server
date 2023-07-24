@@ -34,14 +34,19 @@ async function run() {
 
         //Collections
         const hotDealsCollection = client.db('rokomari').collection('hotDeals')
-
+        const fictionBooksCollection = client.db('rokomari').collection('fictionBooks')
 
         app.get('/hot-deals', async(req,res)=>{
             const result = await hotDealsCollection.find().toArray()
             res.send(result)
         })
 
+        app.get('/fiction-books', async(req,res)=>{
+            const result = await fictionBooksCollection.find().toArray()
+            res.send(result)
+        })
 
+        
 
 
 
