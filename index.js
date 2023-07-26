@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const port = process.env.PORT || 5000;
 
@@ -37,6 +37,8 @@ async function run() {
         const fictionBooksCollection = client.db('rokomari').collection('fictionBooks')
         const nonFictionBooksCollection = client.db('rokomari').collection('nonFictionBooks')
         const islamiBooksCollection = client.db('rokomari').collection('islamiBooks')
+        const westBangleBooksCollection = client.db('rokomari').collection('westBenglaBooks')
+        const academicBooksBooksCollection = client.db('rokomari').collection('academicBooks')
         
         app.get('/hot-deals', async(req,res)=>{
             const result = await hotDealsCollection.find().toArray()
@@ -56,6 +58,26 @@ async function run() {
             const result = await islamiBooksCollection.find().toArray()
             res.send(result)
         })
+        app.get('/west-bangle-books', async(req,res)=>{
+            const result = await westBangleBooksCollection.find().toArray()
+            res.send(result)
+        })
+        app.get('/academic-books', async(req,res)=>{
+            const result = await academicBooksBooksCollection.find().toArray()
+            res.send(result)
+        })
+        app.get("/west-bangle-books/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await westBangleBooksCollection.findOne(query);
+            res.send(result);
+          });
+        app.get("/academic-books/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await academicBooksBooksCollection.findOne(query);
+            res.send(result);
+          });
 
 
         
@@ -76,3 +98,5 @@ run().catch(console.dir);
 app.listen(port, () => {
     console.log(`Rokomari is Running on port ${port || 5000}`)
 })
+
+
