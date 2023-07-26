@@ -44,26 +44,46 @@ async function run() {
             const result = await hotDealsCollection.find().toArray()
             res.send(result)
         })
+        app.get("/hot-deals/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await hotDealsCollection.findOne(query);
+            res.send(result);
+          });
 
         app.get('/fiction-books', async(req,res)=>{
             const result = await fictionBooksCollection.find().toArray()
             res.send(result)
         })
+        app.get("/fiction-books/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await fictionBooksCollection.findOne(query);
+            res.send(result);
+          });
 
         app.get('/non-fiction-books', async(req,res)=>{
             const result = await nonFictionBooksCollection.find().toArray()
             res.send(result)
         })
+        app.get("/non-fiction-books/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await nonFictionBooksCollection.findOne(query);
+            res.send(result);
+          });
         app.get('/islami-books', async(req,res)=>{
             const result = await islamiBooksCollection.find().toArray()
             res.send(result)
         })
+        app.get("/islami-books/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await islamiBooksCollection.findOne(query);
+            res.send(result);
+          });
         app.get('/west-bangle-books', async(req,res)=>{
             const result = await westBangleBooksCollection.find().toArray()
-            res.send(result)
-        })
-        app.get('/academic-books', async(req,res)=>{
-            const result = await academicBooksBooksCollection.find().toArray()
             res.send(result)
         })
         app.get("/west-bangle-books/:id", async (req, res) => {
@@ -72,6 +92,10 @@ async function run() {
             const result = await westBangleBooksCollection.findOne(query);
             res.send(result);
           });
+        app.get('/academic-books', async(req,res)=>{
+            const result = await academicBooksBooksCollection.find().toArray()
+            res.send(result)
+        })
         app.get("/academic-books/:id", async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
